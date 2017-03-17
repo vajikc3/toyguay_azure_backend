@@ -11,7 +11,7 @@ var blobService = azureSorage.createBlobService();
 
 var app = express();
 
-app.get('/', multerUpload.single('file'), getImage);
+app.get('/',  getImage);
 
 /* -- INIT SERVER -- */
 var port = process.env.PORT || 1337;
