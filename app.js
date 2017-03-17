@@ -11,7 +11,9 @@ var blobService = azureSorage.createBlobService();
 
 var app = express();
 
-app.get('/',  getImage);
+app.get('/', function (req, res){
+    res.send('Hello World!');
+});
 
 /* -- INIT SERVER -- */
 var port = process.env.PORT || 1337;
@@ -21,6 +23,3 @@ app.listen(port, function () {
 
 
 /* ===== IMPL ===== */
-function getImage(req, res){
-    res.send('Hello World!');
-}
