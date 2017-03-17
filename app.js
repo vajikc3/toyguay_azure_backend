@@ -11,8 +11,8 @@ var azureSorage = require('azure-storage');
 
 var app = express();
 
-app.get('/', function (req, res){
-    res.send('Hello World!');
+app.get('/', multerUpload.single('file'), function (req, res){
+    res.send('Hello World War 3!');
 });
 
 /* -- INIT SERVER -- */
