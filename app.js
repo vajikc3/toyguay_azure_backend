@@ -11,7 +11,7 @@ var azureSorage = require('azure-storage');
 
 var app = express();
 
-app.get('/', multerUpload.single('file'), function (req, res){
+app.post('/', multerUpload.single('file'), function (req, res){
     res.json(req.body);
 });
 
