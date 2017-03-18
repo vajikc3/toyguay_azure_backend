@@ -7,7 +7,7 @@ var multerUpload = multer({ storage: memStorage });
 
 /* -- AZURE -- */
 var azureSorage = require('azure-storage');
-//var blobService = azureSorage.createBlobService();
+var blobService = azureSorage.createBlobService();
 
 var app = express();
 
