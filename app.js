@@ -15,11 +15,13 @@ var streamifier = require('streamifier');
 
 /* -- AZURE -- */
 var azureSorage = require('azure-storage');
+console.log("prueba 1");
 var blobService = azureSorage.createBlobService(accountName, accountKey);
-
+console.log("prueba 2");
 var app = express();
 
 app.post('/', multerUpload.single('file'), function (req, res){
+    console.log("prueba");
     var stream = streamifier.createReadStream(req.file.buffer);
     blobService.createBlockBlobFromStream(
         'images',
