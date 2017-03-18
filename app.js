@@ -18,7 +18,7 @@ var app = express();
 
 app.post('/', multerUpload.single('file'), function (req, res){
     var respuesta = {
-        file : !!req.file,
+        file : req.file.originalname,
         body : req.body
     }
     res.json(respuesta);
