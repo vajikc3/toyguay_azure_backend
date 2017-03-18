@@ -1,4 +1,10 @@
 var express = require('express');
+var nconf = require('nconf');
+nconf.env();
+ var accountName = nconf.get("STORAGE_NAME");
+ var accountKey = nconf.get("STORAGE_KEY");
+console.log(accountName);
+
 
 /* -- MULTER -- */
 var multer  = require('multer');
