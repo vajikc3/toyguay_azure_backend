@@ -33,8 +33,13 @@ app.post('/', multerUpload.single('file'), function (req, res){
                 console.error(error);
             } else {
                 console.log('Stream uploaded successfully');
-                res.json(response);
             }
+            var respuesta = {
+                error:error,
+                result:result,
+                response:response
+            }
+            res.json(respuesta);
         });
 });
 
