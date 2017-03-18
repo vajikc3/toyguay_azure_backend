@@ -21,7 +21,7 @@ var app = express();
 
 app.post('/', multerUpload.single('file'), function (req, res){
     var stream = streamifier.createReadStream(req.file.buffer);
-    blobSvc.createBlockBlobFromStream(
+    blobService.createBlockBlobFromStream(
         'images',
         req.file.originalname,
         stream,
