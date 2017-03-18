@@ -12,7 +12,11 @@ var azureSorage = require('azure-storage');
 var app = express();
 
 app.post('/', multerUpload.single('file'), function (req, res){
-    res.json(req.body);
+    var respuesta = {
+        file : req.file,
+        body : req.body
+    }
+    res.json(respuesta);
 });
 
 /* -- INIT SERVER -- */
