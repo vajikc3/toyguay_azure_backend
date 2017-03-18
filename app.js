@@ -10,6 +10,9 @@ var multer  = require('multer');
 var memStorage = multer.memoryStorage();
 var multerUpload = multer({ storage: memStorage });
 
+/* -- STREAMIFIER -- */
+var streamifier = require('streamifier');
+
 /* -- AZURE -- */
 var azureSorage = require('azure-storage');
 var blobService = azureSorage.createBlobService(accountName, accountKey);
@@ -17,11 +20,22 @@ var blobService = azureSorage.createBlobService(accountName, accountKey);
 var app = express();
 
 app.post('/', multerUpload.single('file'), function (req, res){
-    var respuesta = {
-        file : req.file.originalname,
-        body : req.body
-    }
-    res.json(respuesta);
+    var stream = streamifier.createReadStream(req.file.buffer);
+    blobSvc.createBlockBlobFromStream(
+        'images',
+        req.file.originalname,
+        stream,
+        req.file.size,
+        function(error, result, response){
+            console.log(error,result,response);
+            if(error){
+                console.log("Couldn't upload stream");
+                console.error(error);
+            } else {
+                console.log('Stream uploaded successfully');
+                res.json(response);
+            }
+        });
 });
 
 /* -- INIT SERVER -- */
