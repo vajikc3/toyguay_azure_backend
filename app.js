@@ -24,7 +24,7 @@ app.post('/', multerUpload.single('file'), function (req, res){
     console.log("prueba");
     var stream = streamifier.createReadStream(req.file.buffer);
     blobService.createBlockBlobFromStream(
-        'images',
+        'toyguay-image-container',
         req.file.originalname,
         stream,
         req.file.size,
