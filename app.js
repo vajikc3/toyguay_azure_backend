@@ -3,7 +3,6 @@ var nconf = require('nconf');
 nconf.env();
  var accountName = nconf.get("STORAGE_NAME");
  var accountKey = nconf.get("STORAGE_KEY");
-console.log(accountName);
 
 
 /* -- MULTER -- */
@@ -13,7 +12,7 @@ var multerUpload = multer({ storage: memStorage });
 
 /* -- AZURE -- */
 var azureSorage = require('azure-storage');
-var blobService = azureSorage.createBlobService();
+var blobService = azureSorage.createBlobService(accountName, accountKey);
 
 var app = express();
 
