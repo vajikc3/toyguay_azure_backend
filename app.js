@@ -1,4 +1,6 @@
 var express = require('express');
+var uuid = require('node-uuid');
+
 var nconf = require('nconf');
 nconf.env();
  var accountName = nconf.get("STORAGE_NAME");
@@ -22,6 +24,10 @@ var app = express();
 
 app.post('/', multerUpload.single('file'), function (req, res){
     console.log("prueba");
+    var fileName = req.file.originalname;
+    var fileNameComponents = fileName.split('.');
+    var fileExtension = fileNameComponents[fileNameComponents.length-1];
+    console.log("fileExtension", fileExtension);
     var stream = streamifier.createReadStream(req.file.buffer);
     blobService.createBlockBlobFromStream(
         'toyguay-image-container',
