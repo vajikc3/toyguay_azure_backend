@@ -23,15 +23,14 @@ console.log("prueba 2");
 var app = express();
 
 app.post('/', multerUpload.single('file'), function (req, res){
-    console.log("prueba");
     var fileName = req.file.originalname;
     var fileNameComponents = fileName.split('.');
     var fileExtension = fileNameComponents[fileNameComponents.length-1];
-    console.log("fileExtension", fileExtension);
+
     var stream = streamifier.createReadStream(req.file.buffer);
     blobService.createBlockBlobFromStream(
         'toyguay-image-container',
-        req.file.originalname,
+        uuid.v4() + "." + fileExtension,
         stream,
         req.file.size,
         function(error, result, response){
